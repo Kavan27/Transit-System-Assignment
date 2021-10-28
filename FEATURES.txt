@@ -1,0 +1,330 @@
+UML DIAGRAM: https://drive.google.com/file/d/1_hDtVKsGNtL5174k9f8C4YYmwWasvI6W/view?usp=sharing
+UML DIAGRAM: PNG in github
+
+Features:
+
+
+Program Structure:
+For the implementation of A2 we have a created 8 files:
+
+
+        1. Main.java: 
+                This is where the program is executed and where all of our calls
+                are made. This file takes the inputs from the users and calls on
+                    our other methods and classes.
+        
+        2. Admin.java: 
+                This file is where the transit system's stats are collected and stored
+                this includes the total revenue on any given day and the number of
+                station/stops reached by all card holders on any given day.
+        
+        3. CardHolder.java:
+                This is where our user/card holders information is stored, it keeps track
+                of the card holder's name, email, and cards that are registered to the card
+                holder along with a monthly cost.
+        
+        4. Card.java: 
+                The Card file creates a card and keeps track of the card info, including balance,
+                status, the current trip the card is on, and the current transit vehicle the card is on
+
+
+        5. Trips.java:        
+                        Stores one continuous trip of the user. Keeps track of when the person enters a  bus or a train
+while checking if the time given is valid and the given location is valid, also    makes a nested ArrayList which keeps track of the entry and exit locations within the trip.
+
+
+        6. Subway.java:
+                         Represents a Subway which has a subway fare and an ArrayList of stations
+                                          this subway stops at, The stations are in order of which they appear, so the first stop is at index
+                          0 and the last stop is at the last index of the ArrayList. It checks when the card holder
+                        taps in or taps out of a subway and calculates the cost and charges the card holder.
+
+
+        7. Buses.java:
+Represents a Bus which has a bus fare and the bus number with an ArrayList of 
+the bus stops. It checks when the card holder taps in or taps out of a bus and calculates the cost and charges the card holder
+
+
+        8. TransitSystem.java: 
+                A transit class that is the parent class of Bus.java and Subway.java, it initializes
+exit time and an ArrayList of stops .
+
+
+        
+
+
+
+
+Features:
+
+
+1) $2 is deducted from the travel card's balance everytime a card holder enters a bus.
+
+
+2) $0.50 is deducted from the travel card's balance for every subway station that is reached by the card holder, excluding the first one, when the card holder exits a bus.
+
+
+3) Doesn't allow a card holder to illegally enter or exit a station or bus without tapping out or tapping in from the previous bus or station.
+
+
+4) Keep track of all trips(entrance and exit locations) taken by a card holder.
+
+
+5) Can create bus routes(stops for each route) and subway system(stations).
+
+
+6) Can choose from presets of cities(containing bus routes and subway stations).
+
+
+7) Keeps track of the times when the card taps in and out of a bus or subway station.
+
+
+8) Caps each trip at $6, so any joint trips made within the 2 hour period will cost at most $6 after that any trips made will be free within that 2 hour period
+
+
+9) An account can be made using and email and name of the the user
+
+
+10) Cardholder can change its name but not its email address
+
+
+11) Card holder can access their last 3 trips(these trips must be completed, ongoing trips will not be printed)
+
+
+12) Cardholder can add or remove travel cards 
+
+
+13) Cardholders can add balance of $10, $20 or $50 to their card balance each time
+
+
+14) When a cardholder creates its card, the starting balance is $19
+
+
+15) Cardholders view their 3 recent trips, suspend a stolen card as well as track their average transit cost each month 
+
+
+16) Admin can print daily report, which includes the statistics for any given day (revenue and number of stops/stations reached by card holders).
+
+
+17) Admin can get the total revenue of the transit system.
+
+
+
+
+18) User can enter and exit a bus
+
+
+19) User can enter and exit a subway
+
+
+20) Print a specific error message for any invalid input
+
+
+
+
+Bonus features and a description of them
+* Ability to choose from a set of preset cities that include preset bus stops and a subway for each preset city
+* As an Admin task we added the functionality to add bus routes and stations after starting the code. This allows the size of the city to be increased.
+* Gives option to replace a suspended card with a new card immediately after the card is suspended
+
+
+        
+
+
+Description of code architecture
+
+
+Modularity
+* Subway cost - Kept this as a global variable so it is easier for the developer to change this to the cost that they want
+* Bus Cost - This was also set as global variables as it becomes easier for the developer to change to the cost that they want
+Inheritance 
+* The TransitSystem class is an abstract class with different modes of public transportation as the subclasses(Subway and Buses are the subclasses in this case)
+* More modes of transportation can be added as subclasses of TransitSystem
+* Subway and Busses inherit some attributes from its parent class TransitSystem.java. It allows the bus and train to share attributes they have in common without repeated code
+Static and Instance Methods
+* In the Main.java we used static methods for most methods in the main as we did not instantiate main thus we needed to use static methods
+* However in other files like Trips.java,Buses.java etc we used instance methods as we are changing the specific object attributes, this way we are able to update the objects based on the user inputs
+Main(Flow Control)
+* The main contains the console which runs our main program, and the main also takes care of taking input from the user using a Scanner object, after this it checks for valid formatting and valid input, then based on the input from the user calls the desired method. The main is also responsible for controlling the flow of the program
+* Switch Cases, used switch cases to check different inputs from the user. This was used Main.java
+
+
+Exceptions 
+* To handle invalid code exceptions we used a try catch statement
+* The try statement was used to run the block of code we wanted to test for any invalid code exceptions, and in the catch statement we check for any exceptions that might be raised and printed an error without disrupting the flow of our code
+
+
+Bus and Subway
+* TransitSystem is the parent class 
+* Bus and Subway inherits from the TransitSystem
+* Each bus is an object that 
+Card
+* Each card is an object and the cardholder contains each card object as an attribute 
+
+
+
+
+How to run our code
+
+
+Priority List:
+The order of execution:
+1. Select a preset/make your own city layout
+2. In user, register as a card holder
+3. In card options add at least 1 card
+4. You can now explore the options described below
+
+
+To start the program you need to run main from Main.java
+*  In the first menu you may choose to use a preset  by entering 1 or create your own city.
+
+
+City Menu: Select a preset city (option 1 or option 2) or create your own city (option 3)
+* Option 1: Small preset city
+   * *Refer to preset information for small city details*
+   * * Option 2: Bigger preset city
+   * *Refer to preset information for big city details*
+* Option 3: Create your own city
+   * Enter in number of stations in the subway(must be an integer)
+   * Then enter in the name of each station (in the order of each station, from the first to the last station)
+   * Then enter the number of bus routes(must be an integer)
+   * Then each bus route will be created on at a time from route 1 to the final route
+   * For each route, you will be prompted about number of stops(must be an integer)
+   * Then enter the the name of each stop
+   * **IMPORTANT** In order to create a new bus you must ensure that at least one bus stop intersects a subway stop
+
+
+User/Admin Menu (option 1 or option 2)
+* If you are a cardholder press 1 for the user options
+* If you are an admin press 2 for the
+
+
+User Menu: 
+The user is able to pick one from this menu
+* Option 1: Enter Bus
+   * Enter CardHolder email
+   * Enter the bus number
+   * Enter stop location
+   * Enter card number used to tap in
+   * Enter date in number of days (1 - 365)
+   * Enter time in 24 hour format (HH:MM)
+   * if all inputs are valid --> *You have successfully entered the bus* 
+   * Otherwise invalid message
+* Option 2: Exit Bus
+   * Enter CardHolder email
+   * Enter Stop exited at
+   * Enter the card number used to tap out
+   * Enter date in number of days (1 - 365)
+   * Enter time in 24 hour format (HH:MM)
+   * If all inputs are valid ->*You have successfully exited the bus* 
+   * Otherwise invalid message 
+* Option 3: Enter Subway
+   * Enter CardHolder email
+   * Enter station location entered at
+   * Enter card number used to tap in
+   * Enter date in number of days (1 - 365)
+   * Enter time in 24 hour format (HH:MM)
+   * if all inputs are valid --> *You have successfully entered the subway* 
+   * Otherwise invalid message
+* Option 4: Exit Subway
+   * Enter CardHolder email
+   * Enter station location exited at
+   * Enter card number used to tap out
+   * Enter date in number of days (1 - 365)
+   * Enter time in 24 hour format (HH:MM)
+   * if all inputs are valid --> *You have successfully exited the subway* 
+   * Otherwise invalid message
+* Option 5: Register as a Card Holder
+   * Enter name
+   * Enter email * Must make sure that email is in a proper email format (ex. joe@gmail.com)
+   * If all inputs are valid → *You have been successfully registered*
+   * Otherwise invalid message
+* Option 6: Card Options
+   * *Explained in another header below*
+* Option 7: Get last 3 trips
+   * Enter card holder email
+   * If email is valid → String representation of trips
+   * Otherwise invalid message
+* Option 8: Change name
+   * Enter CardHolder email
+   * Enter the new Name
+   * If all inputs are valid → *Name has successfully been changed*
+* Option 9: Get average transit cost (per month)
+   * Enter CardHolder email
+   * If email is valid -- > double value for monthly cost
+* Option 10: Main Menu
+   * *return to main menu*
+Card Option Menu:
+* Option 1: Add Card
+   * Enter the cardholder email and it will print out the card number of the new card created which has a starting balance of $19
+* Option 2: Add Balance
+   * Enter Cardholder email 
+   * Then enter the card that you want to add the balance too
+   * Then enter 1 to add $10 or enter 2 to add $20 or enter 3 to add $50
+   * Then it will print out how much you added and the new balance of the card
+
+
+* Option 3: Check Balance 
+   * Enter CardHolder email
+   * Enter Card Number
+* Option 4: Suspend Card
+   * Enter cardholder email
+   * Enter card number that you want to suspend
+      * If you want to replace the suspended card type yes and it will return the new card number with a balance of $19
+* Option 5: Main Menu
+   * Returns to the main menu
+Admin Menu(4 Options)
+* Option 1 - Print out the daily report
+   * After choosing option 1 you have to enter the day(1-365)  that you wish to get the report of
+* Option 2 - Prints out the total revenue
+* Option 3 - Add another station to the end of the subway route 
+   * After choosing option 3 you must enter the name of the new subway station that you want to add to the end of the subway
+* Option 4 - Add a new bus by entering how many stops it will have and the name of each stop
+   * IMPORTANT In order to create a new bus you must ensure that at least one bus stop intersects a subway stop
+
+
+
+
+
+
+A clear discussion of the design decisions in FEATURES.txt
+* Presets
+   * To make it easier to create a list of bus stops and stations since manually inputting it every time the file runs is extensive work.
+* Cardholder Cards 
+   * As each card is an object we store them in each cardholder object to allow us to easily access the card from the cardholder
+* Trips Object
+   * We Implemented a trips object as we realized card holder’s can have multiple trips, this also made it easier for us to compare a bus trip to a subway trip and compare and check whether or not the time and location is valid.
+* Subway  
+   * Contains a global variable SUBWAY_COST which we use to calculate the cost of a ride on a subway. The reason it is global is so it is more module and easy for the developer to change the subway cost to what they want based on their city
+* Buses
+   * Contains a global variable BUS_COST which we use to calculate the cost of a ride on a subway. The reason it is global is so it is more module and easy for the developer to change the subway cost to what they want based on their city
+* Transit System(Parent Class)
+   * To have the option of modularity, as we are able to add more systems into our program in the future as per our clients needs such as a taxi or a ferry.
+* Main
+   * Added a menu input where the user enters numbers to choose from our list of options, as we tried making this program user interactive and allow to user to be using our program in real time
+
+
+Input Formats: 
+Formats for each type of input
+* Menu Screens
+   * Input valid option: int in range 1 - n
+   * n is the number if options available
+* Entering Transit Systems
+   * Input valid cardholder email that has been register: String
+   * Input valid card number: Integer
+   * Input Bus/Station name: String
+   * Input date of entry/exit (in days (1-365)): String
+   * Input a valid time (HH:MM): 
+* Adding A Card Holder
+   * Input valid name: String 
+   * Input valid email: String
+* Card Options
+   * Input valid email: String
+   * Input valid card number: Int 
+   * Input valid preset amount option to add to balance: int in range 1-3
+* Change Name
+   * Input valid email: String
+* Get Last 3 Trip
+   * Input valid email: String
+* Get average transit cost(per month)
+   * Input valid email: String
